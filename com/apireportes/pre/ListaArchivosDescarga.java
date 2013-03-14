@@ -24,7 +24,7 @@ public class ListaArchivosDescarga {
 		File f = ruta;
 
 		File [] lista = f.listFiles();
-		Arrays.sort(lista);
+		Arrays.sort(lista, new ComparatorNombreArchivos());
 
 		hayArchivos=false;
 
