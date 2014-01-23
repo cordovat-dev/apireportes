@@ -43,7 +43,7 @@ public class ListaArchivosDescarga {
 						d = Math.round(d);*/
 						li = new HtmlLI();
 						a = new HtmlA(arc.getName());
-						a.setAtributo("href", "archivos/" + arc.getName());
+						a.setAtributo("href",this.getArmarLink(arc.getName()));
 						li.add(a);
 						//li.add(new HtmlContent(" &nbsp;&nbsp;( " + (d)+" KB )"));
 						li.add(new HtmlContent(" &nbsp;&nbsp;( " + ListaArchivosDescarga.tamanoAmigable(arc.length())+" )"));
@@ -57,6 +57,10 @@ public class ListaArchivosDescarga {
 				thisUL = ul;
 			}
 		}		
+	}
+	
+	protected String getArmarLink(String archivo){
+		return "archivos/"+archivo;
 	}
 	
 	private String extraerExtension(String nombre){
@@ -111,8 +115,19 @@ public class ListaArchivosDescarga {
 	}
 	
 	public static void main(String args[]){
-		ListaArchivosDescarga l = new ListaArchivosDescarga(new File("//home//cordovatj//apache-tomcat-6.0.32//webapps//descargas//archivos"));
+		ListaArchivosDescarga l = new ListaArchivosDescargaIndirecta(new File("//home//cordovatj//apache-tomcat-6.0.32//webapps//descargas//archivos"));
 		System.out.println(l.getUL());
+		
+		String s = "hola.jsp/";
+		if (s.lastIndexOf("..")>-1){
+			System.out.println("..");			
+		}
+		if (s.lastIndexOf("/")>-1){
+			System.out.println("..");			
+		}
+		
+		File archivoClave = new File("//home//cordovatj//apache-tomcat-6.0.32//webapps//descargas//archivos//.clave");
+		System.out.println(archivoClave.exists());
 	}
 
 }
