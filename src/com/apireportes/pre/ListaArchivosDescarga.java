@@ -19,8 +19,13 @@ public class ListaArchivosDescarga {
 	private boolean hayArchivos = false;
 	public static long BYTES_POR_KB = 1024;	
 	public static long BYTES_POR_MB = BYTES_POR_KB * BYTES_POR_KB;
-	public static long BYTES_POR_GB = BYTES_POR_MB * BYTES_POR_KB;	
+	public static long BYTES_POR_GB = BYTES_POR_MB * BYTES_POR_KB;
+	String url="";
 	public ListaArchivosDescarga(File ruta){
+		this(ruta, "");
+	}
+	public ListaArchivosDescarga(File ruta,String url_){
+		this.url=limpiarURL(url_);
 		File f = ruta;
 
 		File [] lista = f.listFiles();
@@ -59,6 +64,10 @@ public class ListaArchivosDescarga {
 		}		
 	}
 	
+	private String limpiarURL(String url_) {
+		return url_.substring(0,url_.lastIndexOf('/')+1);
+	}
+
 	protected String getArmarLink(String archivo){
 		return "archivos/"+archivo;
 	}
@@ -115,7 +124,7 @@ public class ListaArchivosDescarga {
 	}
 	
 	public static void main(String args[]){
-		ListaArchivosDescarga l = new ListaArchivosDescargaIndirecta(new File("//home//cordovatj//apache-tomcat-6.0.32//webapps//descargas//archivos"));
+		ListaArchivosDescargaIndirecta l = new ListaArchivosDescargaIndirecta(new File("//home//cordovatj//apache-tomcat-6.0.32//webapps//descargas//archivos_783c29a1fd33e175c524531dcb850ce9692daca8"),"http://10.172.204.111:8080/descargas/prueba.jsp");
 		System.out.println(l.getUL());
 		
 		String s = "hola.jsp/";
