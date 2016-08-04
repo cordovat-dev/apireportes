@@ -2,7 +2,6 @@ pruebas/*
 .classpath
 .pmd
 .project
-.settings/
 _estilo.css
 bin/
 doc.rar
