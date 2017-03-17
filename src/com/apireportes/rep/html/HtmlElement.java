@@ -104,17 +104,22 @@ public class HtmlElement {
 	}
 
 	private String armarCadenaAtributos(String lsCadenaAtributos) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(lsCadenaAtributos);
 		for (HtmlAttribute a: pmAtributos.values()){
-			lsCadenaAtributos += a.getHtml() + " ";
+			sb.append(a.getHtml());
+			sb.append(" ");
 		}
-		return lsCadenaAtributos;
+		return sb.toString();
 	}
 
 	private String armarCadenaElementos(String lsCadenaElementos) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(lsCadenaElementos);
 		for(HtmlElement e: palElementos){ 
-			lsCadenaElementos += e.getHtml();
+			sb.append(e.getHtml());			
 		}
-		return lsCadenaElementos;
+		return sb.toString();
 	}
 	
 	public void setAtributo(String a_, String v_){
