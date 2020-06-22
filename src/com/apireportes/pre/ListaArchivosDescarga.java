@@ -122,22 +122,6 @@ public class ListaArchivosDescarga {
 		
 		return s;
 	}
-	
-	public static void main(String args[]){
-		ListaArchivosDescargaIndirecta l = new ListaArchivosDescargaIndirecta(new File("//home//cordovatj//apache-tomcat-6.0.32//webapps//descargas//archivos_783c29a1fd33e175c524531dcb850ce9692daca8"),"http://10.172.204.111:8080/descargas/prueba.jsp");
-		System.out.println(l.getUL());
-		
-		String s = "hola.jsp/";
-		if (s.lastIndexOf("..")>-1){
-			System.out.println("..");			
-		}
-		if (s.lastIndexOf("/")>-1){
-			System.out.println("..");			
-		}
-		
-		File archivoClave = new File("//home//cordovatj//apache-tomcat-6.0.32//webapps//descargas//archivos//.clave");
-		System.out.println(archivoClave.exists());
-	}
 
 }
 

@@ -21,10 +21,4 @@ public class HtmlImg extends HtmlElement {
 		psDelimD="";			
 	}
 	
-	public static void main (String args[]){
-		HtmlImg img = new HtmlImg("img/critica.jpg");
-		img.setAtributo("height","16");
-		img.setAtributo("width","16");
-		System.out.println(img.getHtml());
-	}
 }

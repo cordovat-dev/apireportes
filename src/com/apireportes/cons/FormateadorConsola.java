@@ -412,37 +412,4 @@ public class FormateadorConsola{
 		  }
 	}
 
-
-	public static void main (String args[]){
-
-		String s = "PLANTA_COL1\tPROD_COL1\tPLANTA_COL2\tPROD_COL2\nSan Joaqu�n&nbsp;&nbsp;\t40425.0\tLama Procesos&nbsp;&nbsp;\t0.0\nSanta B�rbara&nbsp;&nbsp;\t33870.0\tLamar L�quidos&nbsp;&nbsp;\t0.0\nJusep�n&nbsp;&nbsp;\t26292.0\tTablazo I&nbsp;&nbsp;\t0.0\nAccroven Santa B�rbara&nbsp;&nbsp;\t21548.0\tTablazo II&nbsp;&nbsp;\t0.0\nAccroven San Joaqu�n&nbsp;&nbsp;\t20921.0\tPC-TJ-2&nbsp;&nbsp;\t16404.0\nRefrig. San Joaqu�n&nbsp;&nbsp;\t0.0\tPC-TJ-3&nbsp;&nbsp;\t0.0\n &nbsp;&nbsp;\t0.0\tC3 El Tablazo&nbsp;&nbsp;\t0.0\n0.0\t143056.0\t0.0\t16404.0\n";
-
-		//String s1 = "Item\tcant\tprecio\ttotal\ntarjeta USB\t1\t120\t120\nmouse\t2\t50\t100\nteclado\t1\t75\t75\nDVD\t10\t2,5\t25\nmonitor\t1\t700\t700\ndisco duro\t1\t800\t800\nTotal\t16\t1747,5\t1820";
-		//String s2 = "Item\tcant\tprecio\ttotal\nmonitor\t3\t500\t1500\nUPS\t1\t500\t500\nsilla\t2\t75\t150\nDVD\t35\t2,5\t87,5\nmesa\t1\t200\t200\ndisco duro\t2\t800\t1600\niPod\t2\t699\t4037,5\nAirport\t1\t450\t6575\npen drive\t2\t80\t12650\nmaletin\t1\t120\t120";
-
-
-		//FormateadorConsola fc = new FormateadorConsola();
-
-		System.out.println(s);
-
-
-		//fc.setSeparacionAdicional(3);
-		//fc.setPrimeraFilaTitulos(true);
-		//fc.setAbreviarTitulos(true);
-		//fc.setPuntoAbrev(false);
-		//fc.setSepTotales(true);
-		//fc.setSepEntreReportes(15);
-
-		//s1 = fc.getReporteConsola(s1);
-		//s2 = fc.getReporteConsola(s2);
-		//s1 = fc.pegarReportes(s1,s2);
-		//s1 = fc.pegarReportes(s1,s2);
-
-		//System.out.println(fc.getReporteConsola(s));
-		//System.out.println(fc.pegarReportes(s1,s2));
-		//System.out.println(fc.pegarReporte(s2,s1));
-
-
-	}
-
 }
