@@ -14,7 +14,6 @@ import com.apireportes.rep.html.HtmlUL;
 
 public class ListaArchivosDescarga {
 	
-	//private List<String> extensiones = new ArrayList<String>();
 	private HtmlUL thisUL;
 	private boolean hayArchivos = false;
 	public static long BYTES_POR_KB = 1024;	
@@ -43,14 +42,10 @@ public class ListaArchivosDescarga {
 				for (File arc: lista){
 					boolean esArchivoNormal = arc.isFile() && !arc.isHidden();
 					if(esArchivoNormal){
-						/*double d = arc.length();
-						d /=  1024;
-						d = Math.round(d);*/
 						li = new HtmlLI();
 						a = new HtmlA(arc.getName());
 						a.setAtributo("href",this.getArmarLink(arc.getName()));
 						li.add(a);
-						//li.add(new HtmlContent(" &nbsp;&nbsp;( " + (d)+" KB )"));
 						li.add(new HtmlContent(" &nbsp;&nbsp;( " + ListaArchivosDescarga.tamanoAmigable(arc.length())+" )"));
 						li.setAtributo("class", "arch_"+this.extraerExtension(arc.getName()));
 						ul.add(li);						
@@ -84,10 +79,6 @@ public class ListaArchivosDescarga {
 		}
 		return extension;
 	}
-
-	/*public List<String> getExtensiones() {
-		return extensiones;
-	}*/
 
 	public HtmlUL getUL() {
 		return thisUL;

@@ -11,10 +11,10 @@ import java.math.*;
  * <h4>/Historia de modificaciones</h4>/
  * <br>28/09/2012 CORDOVATJ, se cambio de String a Stringbuffer en getStrFilasRS para mayor rendimiento con grandes cantidades de data. Se agregó tipo de dato INTEGER en getStrFilasRS y se lanza excepción en casos no soportados. Se eliminó error latente en getStrColRsNumero, leyendo primero el número de rs antes de preguntar si fue null 
  * <br>28/05/2010 CORDOVATJ, se hizo una profunda refactorizacion para reducir la complejidad siclomatica, entre ellas la extraccion de muchos miembros a la clase FormatoReporte
- * <br>18/03/2010 CORDOVATJ, agregaron metodos getFormatoNumerosTotales, setFormatoNumerosTotales, setRedondearTotales y getRedondearTotales, por la necesidad de tener reportes con los detalles con decimales pero los totales redondeados ( ejemplo reporte de mermas ). Por lo cual se modific� el m�tgodo getStrTotales y getSumaColumna para cuyos comportamientos se afecta si la opci�n de redondear totales est� seteada ( por defecto false )
- * <br>08/01/2010 CORDOVATJ, se agrego un modo adicional llamado SIN_TOTALES_CON_PROMEDIOS que permite obtener el reporte con promedios pero sin totales, se manera que las clases que usan o heredan, no tengan que armar esa configuraci�n por nedio de varias llamadas separadas
+ * <br>18/03/2010 CORDOVATJ, agregaron metodos getFormatoNumerosTotales, setFormatoNumerosTotales, setRedondearTotales y getRedondearTotales, por la necesidad de tener reportes con los detalles con decimales pero los totales redondeados ( ejemplo reporte de mermas ). Por lo cual se modificó el método getStrTotales y getSumaColumna para cuyos comportamientos se afecta si la opción de redondear totales está seteada ( por defecto false )
+ * <br>08/01/2010 CORDOVATJ, se agrego un modo adicional llamado SIN_TOTALES_CON_PROMEDIOS que permite obtener el reporte con promedios pero sin totales, se manera que las clases que usan o heredan, no tengan que armar esa configuración por nedio de varias llamadas separadas
  * <br>10/12/2009 CORDOVATJ, se aumento la visibilidad de protected a public para soportar el llamado desde otros paquetes, tal como se hizo en su momento con getStrFilasRS
- * <br>04/12/2009 CORDOVATJ, se modifico getRsQuery ( el unico sitio de la clase donde se crea un statement ) para que hiciera ALTER SESSION de las variables NLS de Oracle, coloc�ndolas en ingl�s estadounidense, evitando as� el error ORA-12705 al acceder a dblinks. Se hizo depender este comportamiento de una variable miembro que se puede setear e inspeccionar con los m�todos setForzarNLSUSA y getForzarNLSUSA respectivamente. El comportamiento est� activo por defecto.
+ * <br>04/12/2009 CORDOVATJ, se modifico getRsQuery ( el unico sitio de la clase donde se crea un statement ) para que hiciera ALTER SESSION de las variables NLS de Oracle, colocándolas en inglés estadounidense, evitando así el error ORA-12705 al acceder a dblinks. Se hizo depender este comportamiento de una variable miembro que se puede setear e inspeccionar con los métodos setForzarNLSUSA y getForzarNLSUSA respectivamente. El comportamiento está activo por defecto.
  * <br>26/09/2008 CORDOVATJ, se modifico getStrFilasRS para que no instanciase un nuevo SimpleDateFormat para cada fila
  *                       en caso de fechas sino que use el miembro fechaFormat. Tambien se sustituyo getDate por
  *                       getTimeStamp para que las fechas traigan horas
@@ -133,7 +133,7 @@ public class Reporte
     }
 
     public double getSumaColumna(ResultSet rs, int col) throws SQLException
-    {   // se recorre las filas de una columna num�rica y se acumulan
+    {   // se recorre las filas de una columna numérica y se acumulan
         double total = 0;
         int fila = 0;
         rs.beforeFirst();       
@@ -199,14 +199,6 @@ public class Reporte
     protected String getStrSustituirLNporBR (String cadena)
     {
     	return cadena.replaceAll("\n","<br>");
-       /*String line;
-        StringTokenizer st = new StringTokenizer(cadena,"\n");
-        line = "";
-        while (st.hasMoreTokens())
-        {
-            line += (st.nextToken()) + "<br>";
-        }
-        return line;*/
     }
 
     protected String getStrSustituirTABporEspacio (String cadena)
@@ -312,7 +304,7 @@ public class Reporte
         
         while (rs.next()){
         	if(!formato.omitirFilaTotales(++fila)){
-				// Por cada fila voy acumulando los valores numericos en la posicion correspondiente de un arreglo				
+				// Por cada fila voy acumulando los valores numericos en la posición correspondiente de un arreglo				
 				for (int i=1;i<=numberOfColumns;i++){
 					if (formato.mostrarColumna(i)) {
 						if (rsmd.getColumnType(i) == Types.NUMERIC){
@@ -320,7 +312,7 @@ public class Reporte
 						} else {
 							totales[i-1] = 0; // si el dato no es numerico acumulo cero							
 						}
-						// se refactorizo
+						// se refactorizó
 					}
 				}
 			}

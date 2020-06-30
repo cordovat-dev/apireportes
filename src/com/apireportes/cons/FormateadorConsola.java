@@ -11,15 +11,15 @@ import java.util.Iterator;
 import java.io.*;
 
 /**
-* Esta formatea una salida tabular de Reporte para su correcta presentaci�n por c�nsola
+* Esta formatea una salida tabular de Reporte para su correcta presentación por cónsola
 * <h4>Historia de modificaciones</h4>
-*     12/01/2010 CORDOVATJ, se elimin� l�nea en blanco adicional entre los caption de los reportes y el reporte mismo, por alguna raz�n esa l�nea adicional no se veia
+*     12/01/2010 CORDOVATJ, se eliminó línea en blanco adicional entre los caption de los reportes y el reporte mismo, por alguna razón esa línea adicional no se veia
 *                           al pegar dos reportes uno al lado del otro ( se eliminaba )
 * <br>29/06/2009 CORDOVATJ, nuevo constructor que recibe el nombre del archivo de abreviaturas
-* <br>30/03/2009 CORDOVATJ, se maneja el caso de columnas vacias ( en m�todo limpiaSalida ), lo cual corrige error de desfase de columnas
+* <br>30/03/2009 CORDOVATJ, se maneja el caso de columnas vacias ( en método limpiaSalida ), lo cual corrige error de desfase de columnas
 *                       de totales cuando se omite el total para una columna
-* <br>30/03/2009 CORDOVATJ, se corrigi� error de c�lculo de las anchuras cuando el dato contiene &nbsp;
-* @author Tulains C�rdova
+* <br>30/03/2009 CORDOVATJ, se corrigió error de cálculo de las anchuras cuando el dato contiene &nbsp;
+* @author Tulains Córdova
 * @version 1
 */
 
@@ -40,11 +40,6 @@ public class FormateadorConsola{
 	private int		piSepEntreReportes		= 3;
 	private Map<String,String> 	pmAbrevs	= new HashMap<String,String>();
 	private String	nomArchAbrevs;
-	//private Map 	pmAnchosCols  			= new HashMap(); //Tanques
-	//private String 	psCadena 				= "";
-	//private int 	piAnchoTotal 			= 0;
-	//private int 	piNumCols 				= 0;
-	//private int 	piNumFilas 				= 0;
 
 	/*
 	* gets y sets simples
@@ -92,10 +87,6 @@ public class FormateadorConsola{
 	* @deprecated
 	*/
 	public FormateadorConsola(){
-		  //psCadena = cadena_;
-		  //psCadena = abreviarLarga(psCadena);
-		  //calcularAnchos(psCadena);
-		  //cargarAbreviaturas();
 	}
 
 	public FormateadorConsola(String nomArchAbrevs_){
@@ -104,9 +95,9 @@ public class FormateadorConsola{
 	}
 
 	/*
-	* Transforma una cadena de filas de datos separadas por alg�n psSep ( por ej: tabulaci�n )
+	* Transforma una cadena de filas de datos separadas por algún psSep ( por ej: tabulación )
 	* eliminando los separadores y rellenando para producir anchura fija y de esa manera ser
-	* visualizado de manera arm�nica por c�nsola
+	* visualizado de manera armónica por cónsola
 	*/
 
 	public String getReporteConsola(String cabecera_, String cadena_){
@@ -114,9 +105,9 @@ public class FormateadorConsola{
 		  Map<Integer,Integer> lmAnchosCols;// = new HashMap();
 
 		  /* se eliminan los acentos, ya que no se ven bien en consola
-		  	 ojo esta operaci�n se hacia al final sobre la cadena ya procesada, pero generaba un error de mal c�lculo en los anchos
-		     debido a la �substuci�n de &nbsp; por eso se movi� aqu� para que afectara la cadena antes de calcular los anchos.
-		     habr� que ver luego como limpiar &nbsp;�sin afectar los acentos, si se decide no limpiar los acentos ( separar la limpieza de acentos
+		  	 ojo esta operación se hacia al final sobre la cadena ya procesada, pero generaba un error de mal cálculo en los anchos
+		     debido a la substución de &nbsp; por eso se movió aquí para que afectara la cadena antes de calcular los anchos.
+		     habrá que ver luego como limpiar &nbsp; sin afectar los acentos, si se decide no limpiar los acentos ( separar la limpieza de acentos
 		     de la limpieza de &nbsp; */
 		  if (pbSubsAcentos) {
 			  cadena_ = limpiaSalida(cadena_);
@@ -146,17 +137,7 @@ public class FormateadorConsola{
 				 {
 						liCol++;	// se incrementa el contador de columnas
 						lILargo = (Integer)lmAnchosCols.get(new Integer(liCol)); // se consulta el ancho de la columna
-						lsTokenCol = tCols.nextToken();		// el pr�ximo pedazo de texto ( columna )
-
-
-
-						/*if (lsTokenCol.equals("10171") || lsTokenCol.equals("1413170")){
-							bBanderaDebug = true;
-							System.out.println("   aqui    ");
-							System.out.println("ancho total " + liAnchoTotal);
-							System.out.println("largo       " + lILargo);
-							System.out.println("columna      " + liCol);
-						}*/
+						lsTokenCol = tCols.nextToken();		// el próximo pedazo de texto ( columna )
 
 						if (pbSepTotales && !tFilas.hasMoreTokens()) { // esto es para imprimir una raya separadora entre el cuerpo y los totales
 							lsSepTotales = rellenar("",psSeparadorTitulos,liAnchoTotal,false,false) + "\n";
@@ -166,13 +147,13 @@ public class FormateadorConsola{
 
 						if (liCol>1){ // a partir de la 2da columna se agrega un espacio para separarlo de la columna
 									  // anterior
-							   if ((liContFilas==1) && pbAbrevTitulos && (pbPrimFilaTitulos==true)) { // abreviar los t�tulos
+							   if ((liContFilas==1) && pbAbrevTitulos && (pbPrimFilaTitulos==true)) { // abreviar los títulos
 							   		salida = salida + rellenar(abreviar(lsTokenCol),psRelleno,lILargo.intValue() + piSepAdicional,pbCentrarTitulos,false);
 								} else {
 									salida = salida + rellenar(lsTokenCol,psRelleno,lILargo.intValue() + piSepAdicional,pbCentrarTodo,false);
 								}
 						} else { // la primera columna va pegada de la izquierda sin psSep adicional
-							   if ((liContFilas==1) && pbAbrevTitulos && (pbPrimFilaTitulos==true)) { // abreviar los t�tulos
+							   if ((liContFilas==1) && pbAbrevTitulos && (pbPrimFilaTitulos==true)) { // abreviar los títulos
 							   	   salida = salida + rellenar(abreviar(lsTokenCol),psRelleno,lILargo.intValue() ,pbCentrarTitulos,false);
 							   } else {
 								   salida = salida + lsSepTotales + rellenar(lsTokenCol,psRelleno,lILargo.intValue() ,pbCentrarTodo,false);
@@ -180,21 +161,21 @@ public class FormateadorConsola{
 						}
 				 }
 
-				 salida =  salida + "\n"; // se le coloca su fin �de nuevo sun fin de l�nea
+				 salida =  salida + "\n"; // se le coloca de nuevo sun fin de línea
 
-				 // se agrega psSep de t�tulos
+				 // se agrega psSep de títulos
 				 if ((liContFilas == 1) && (pbPrimFilaTitulos==true)){
-					 // se pasa cadena vac�a (longitud cero) para que rellene todo el ancho
+					 // se pasa cadena vacía (longitud cero) para que rellene todo el ancho
 					 salida = salida + rellenar("",psSeparadorTitulos,liAnchoTotal,false,false) + "\n";
 				 }
 
 		  }
 
-		  if (cabecera_ != null && !cabecera_.equals("")) { // formatea la la cabecera o t�tulo del reporte
+		  if (cabecera_ != null && !cabecera_.equals("")) { // formatea la la cabecera o título del reporte
 			  salida =
-			  rellenar("",psRelleno,liAnchoTotal,false,false) + "\n" + 			// l�nea en blanco
-			  rellenar(cabecera_,psRelleno,liAnchoTotal,false,true) + "\n" + 	// t�tulo
-			  rellenar("",psRelleno,liAnchoTotal,false,false) + "\n" + // l�nea en blanco
+			  rellenar("",psRelleno,liAnchoTotal,false,false) + "\n" + 			// línea en blanco
+			  rellenar(cabecera_,psRelleno,liAnchoTotal,false,true) + "\n" + 	// título
+			  rellenar("",psRelleno,liAnchoTotal,false,false) + "\n" + // línea en blanco
 			  salida;
 		  }
 
@@ -239,7 +220,7 @@ public class FormateadorConsola{
 		if (lsAbrv == null) {
 			if (!lsCadena.matches(".* .*")) {
 				/*
-				* Esta es la forma sencilla de abreviar, cuando el t�tulo es una sola palabra
+				* Esta es la forma sencilla de abreviar, cuando el título es una sola palabra
 				*/
 				if (lsCadena.length() > 5) {  // se excede 5 caracteres
 					lsCadena = lsCadena.substring(0,4) + psPuntoAbrev;	 // se corta y se coloca un punto
@@ -392,10 +373,10 @@ public class FormateadorConsola{
 	}
 
 	/*
-	* Esta funci�n deber� devolver in String con la cadena rellenada con caracteres hasta
+	* Esta función deberá devolver in String con la cadena rellenada con caracteres hasta
 	* alcanzar la longitud deseada, ejemplo
 	*
-	* rellenar("2,344.54","",15) devolver�a "       2,344.54"
+	* rellenar("2,344.54","",15) devolvería "       2,344.54"
 	*/
 	public static String rellenar(String cadena_,String relleno_,int longitud, boolean centrar_, boolean derecha_){
 

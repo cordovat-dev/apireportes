@@ -46,25 +46,6 @@ public class FormatoReporte {
     private final List<Integer> ivColsNumericas = new ArrayList<Integer>();
     private final List<Integer> ivColsOmitirTotal = new ArrayList<Integer>();
     public final Map<Integer,DecimalFormat> pmFormatosColExcepcionales 	= new HashMap<Integer,DecimalFormat>();
-	
-    /*public List<Integer> getColsNumericas(){
-    	return ivColsNumericas;
-    }*/
-    /*
-     * Devuelve el DecimalFormat de la instancia
-     *
-     * @see #getLocale
-     * @see #setLocale(Locale locale_)
-     * @see #getDecimalFormat
-     * @see #getFormatoNumeros
-     * @see #setFormatoNumeros(String formato_)
-     * @see #setFormatoColEspecifica(int col_, String formato_)
-     * @see #getStrNumero(double numero)
-     * @see #getStrNumero(String formato_, double numero_)
-     */
- 	/*public DecimalFormat getDecimalFormat(){
- 		return decimalFormat;
- 	} */
  	
 	public boolean getRedondearTotales(){
 		return redondearTotales;
@@ -84,24 +65,6 @@ public class FormatoReporte {
 	public void setOmitirTotColsNoNum(boolean opcion_){
 		omitirTotalesColsNoNum = opcion_;
 	}
-	
-	/*public List<Integer> getColsOmitirTotal(){
-		return ivColsOmitirTotal;
-	}*/
-
-	/*public boolean getOmitirTotColsNoNum(){
-		return omitirTotalesColsNoNum;
-	}*/
-
-    /**
-     * Devuelve el Locale usado para generar las cadenas. Por defecto es US.
-     * @see #setLocale(Locale locale_)
-     * @see String getFormatoNumeros()
-     * @see #setFormatoNumeros(String formato_)
-     */
-	/*public Locale getLocale(){
-		return lLocale;
-	}*/
 	
     /**
      * Devuelve el nombre del mes segun el locale de la instancia de Reporte.
@@ -134,27 +97,7 @@ public class FormatoReporte {
 		numberFormat = NumberFormat.getNumberInstance(lLocale);
 		decimalFormat = (DecimalFormat)numberFormat;
 		decimalFormat.applyPattern(patronFormato);
-	}	
-
-    /**
-     * Devuelve el formato numerico usado para generar las cadenas. Por defecto es "#########0.0####".
-     * @see #getLocale()
-     * @see #setLocale(Locale locale_)
-     * @see #setFormatoNumeros(String formato_)
-     */
-	/*public String getFormatoNumeros(){
-		return patronFormato;
-	}*/
-
-    /**
-     * Devuelve el formato numerico usado para generar las cadenas de totales. Por defecto es "#########0.0####".
-     * @see #getLocale()
-     * @see #setLocale(Locale locale_)
-     * @see String setFormatoNumerosTotales()
-     */
-	/*public String getFormatoNumerosTotales(){
-		return patronFormatoTotales;		
-	}	*/
+	}
 	
     /**
      * Establece el formato numerico usado para generar las cadenas de totales. Por defecto es "#########0.0####".
@@ -206,21 +149,6 @@ public class FormatoReporte {
 	public String getFormatoFechas(){
 		return patronFormatoFecha;
 	}
-
-    /*
-     * Devuelve el formato de fechas usado para generar las cadenas. Por defecto es "dd/MM/yyyy".
-     * @see #getLocale()
-     * @see #setLocale(Locale locale_)
-     * @see #setFormatoNumeros(String formato_)
-     * @see #setFormatoFechas(String formato_)
-     */
-	/*public String getFormatoFechas(){
-		return patronFormatoFecha;
-	}*/
-	
-	/*public SimpleDateFormat getSimpleDateFormat(){
-		return fechaFormat;
-	}*/
 	
 	public void setFormatoColEspecifica(int col_, String formato_){
 
@@ -229,10 +157,6 @@ public class FormatoReporte {
 		formatoExcepcional.applyPattern(formato_);
 		pmFormatosColExcepcionales.put(new Integer(col_),formatoExcepcional);
 	}
-	
-	/*public Map<Integer,DecimalFormat> getFormatosColExcepcionales(){
-		return pmFormatosColExcepcionales;	
-	}*/
 
     /**
      *  @see #getSustituirNull
@@ -334,10 +258,6 @@ public class FormatoReporte {
         }
        omitirCols = true;
     }
-    
-    /*public List <Integer> getColsOmitir(){
-    	return ivColsOmitir;
-    }*/
 
     /**
      * Si se le pasa true hace que al llamar getStrFilas o getStrFilasRS se omitan del resultado
@@ -360,11 +280,7 @@ public class FormatoReporte {
 			ivFilasOmitirTotal.add(new Integer(filasOmitir_[i]));
 		}
 
-	}    
-
-    /*public boolean getOmitirColumnas(){
-        return omitirCols;
-    }*/
+	}
 	
     public void setSustituirNLporBR(boolean opcion)
     {
@@ -401,21 +317,6 @@ public class FormatoReporte {
      {
          mostrarCeros = opcion;
      }
-     /**
-     * @see #setMostrarCeros
-     */
-     /*public boolean getMostrarCeros()
-     {
-         return mostrarCeros;
-     }*/
-     
-     /*public String getPatronFormato(){
-    	 return patronFormato;
-     }*/
-
-     /*public List<Integer> getFilasOmitirTotal(){
-    	 return ivFilasOmitirTotal;
-     }*/
      
      public boolean mostrarColumna(int columna_){
     	 return (!omitirCols || ivColsOmitir.indexOf(new Integer(columna_)) == -1);
@@ -449,10 +350,6 @@ public class FormatoReporte {
      public boolean mostrarNumero(double numero){
     	 return (numero != 0 || (numero == 0 && mostrarCeros));
      }
-     
-     /*public DecimalFormat getFormatoExcepcional(int columna){
-    	 return pmFormatosColExcepcionales.get(new Integer(columna));
-     }*/
      
  	public String getStrNumero(int col_, double numero){
  		String resultado;

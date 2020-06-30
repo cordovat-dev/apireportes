@@ -74,7 +74,6 @@ import java.io.*;
 			o[1] = ois.readObject();
 			o[2] = ois.readObject();
 			o[3] = ois.readObject();
-			//SecretKey key = (SecretKey)ois.readObject();
 			return o;
 		}
 
